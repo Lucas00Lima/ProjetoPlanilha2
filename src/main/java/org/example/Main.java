@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         String filePath = "C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova pasta\\teste.xlsx";
         String username = "root";
-        String password = "@soma+";
+        String password = "";
         String table = "product";
         String url = "jdbc:mysql://localhost:3306/db000";
         String defaultValue = "";
