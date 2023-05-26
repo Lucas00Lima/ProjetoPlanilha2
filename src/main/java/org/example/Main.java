@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class Main {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova pasta\\planilha.xlsx";
+        String filePath = "C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova pasta\\teste.xlsx";
         String username = "root";
         String password = "@soma+";
         String table = "product";
@@ -21,7 +21,7 @@ public class Main {
             Sheet sheet = workbook.getSheetAt(0); //Instancia a planilha do arquivo pegando a de indice 0 ou seja a primeira
             DataFormatter dataFormatter =  new DataFormatter();
             StringBuilder insertQuery = new StringBuilder("INSERT INTO " + table + " (internal_code, name, description, barcode, price, minimum_stock");
-            StringBuilder valuePlaceholders = new StringBuilder(" VALUES (?,?,?,?,?,?,?");
+            StringBuilder valuePlaceholders = new StringBuilder(" VALUES (?,?,?,?,?,?");
             List<String> defaultValues = new ArrayList<>();
             DatabaseMetaData metaData = connection.getMetaData();
             ResultSet resultSet = metaData.getColumns(null, null, table, null);
@@ -67,7 +67,7 @@ public class Main {
                 String nameValue = dataFormatter.formatCellValue(nameCell);
                 String description = dataFormatter.formatCellValue(descriptionCell);
                 String barcodeValue = dataFormatter.formatCellValue(barcodeCell);
-                String priceValue = dataFormatter.formatCellValue(priceCell);
+                String priceValue = dataFormatter.formatCellValue(priceCell).replace(",","");
                 String minimumStockValue = dataFormatter.formatCellValue(minimumStockCell);
                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery.toString());
                 preparedStatement.setString(1, internalCodeValue);
@@ -76,11 +76,16 @@ public class Main {
                 preparedStatement.setString(4, barcodeValue);
                 preparedStatement.setString(5, priceValue);
                 preparedStatement.setString(6, minimumStockValue);
-
-
-
-
-
+                for (int j = 0; j < defaultValues.size(); j++) {
+                    String value = defaultValues.get(j);
+                    if (value.isEmpty()) {
+                        preparedStatement.setInt(j + 7, 0);
+                    } else {
+                        preparedStatement.setString(j + 7, value);
+                    }
+                }
+                preparedStatement.execute();
+                preparedStatement.close();
             }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
