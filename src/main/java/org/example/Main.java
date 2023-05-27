@@ -7,11 +7,14 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Main {
     public static void main(String[] args) {
         String filePath = "C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova pasta\\teste.xlsx";
         String username = "root";
-        String password = "";
+        String password = "@soma+";
         String table = "product";
         String url = "jdbc:mysql://localhost:3306/db000";
         String defaultValue = "";
@@ -58,7 +61,6 @@ public class Main {
                 Cell priceCell = row.getCell(4);
                 Cell minimumStockCell = row.getCell(5);
                 Cell inativeCell = row.getCell(6);
-
                 String inative = dataFormatter.formatCellValue(inativeCell);
                 if  (inative.equals("S")) {
                     continue;
@@ -67,14 +69,24 @@ public class Main {
                 String nameValue = dataFormatter.formatCellValue(nameCell);
                 String description = dataFormatter.formatCellValue(descriptionCell);
                 String barcodeValue = dataFormatter.formatCellValue(barcodeCell);
-                String priceValue = dataFormatter.formatCellValue(priceCell).replace(",","");
+
+                String priceValue = dataFormatter.formatCellValue(priceCell);
+                if (priceValue.contains(",")) {
+                    int decimalIndex = priceValue.indexOf(",");
+                    int decimalPlaces = priceValue.length() - decimalIndex - 1;
+                    if (decimalPlaces == 1) {
+                        priceValue += "0";
+                    }
+                }
+                String priceValues = priceValue.replaceAll("," , "");
+
                 String minimumStockValue = dataFormatter.formatCellValue(minimumStockCell);
                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery.toString());
                 preparedStatement.setString(1, internalCodeValue);
                 preparedStatement.setString(2, nameValue);
                 preparedStatement.setString(3, description);
                 preparedStatement.setString(4, barcodeValue);
-                preparedStatement.setString(5, priceValue);
+                preparedStatement.setString(5, priceValues);
                 preparedStatement.setString(6, minimumStockValue);
                 for (int j = 0; j < defaultValues.size(); j++) {
                     String value = defaultValues.get(j);
@@ -85,8 +97,19 @@ public class Main {
                     }
                 }
                 preparedStatement.execute();
+                preparedStatement.addBatch("UPDATE " + table + " SET type = 1");
+                preparedStatement.addBatch("UPDATE " + table + " SET department_id = 1");
+                preparedStatement.addBatch("UPDATE " + table + " SET measure_unit = 'u'");
+                preparedStatement.addBatch("UPDATE " + table + " SET production_group = 1");
+                preparedStatement.addBatch("UPDATE " + table + " SET panel = 1");
+                preparedStatement.addBatch("UPDATE " + table + " SET active = 1");
+                preparedStatement.addBatch("UPDATE " + table + " SET hall_table = 1");
+                preparedStatement.executeBatch();
+                totalLinhasInseridas++;
                 preparedStatement.close();
             }
+            connection.close();
+            System.out.println("Row affected = " + totalLinhasInseridas);
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }

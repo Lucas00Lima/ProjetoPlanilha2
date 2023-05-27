@@ -1786,7 +1786,7 @@ element_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="448" parent="243" name="id">
-      <AutoIncrement>616</AutoIncrement>
+      <AutoIncrement>682</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -3415,7 +3415,7 @@ element_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="772" parent="264" name="id">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4764,7 +4764,6 @@ element_id</ColNames>
     </column>
     <column id="1036" parent="283" name="price">
       <DasType>int(11)|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
     <column id="1037" parent="283" name="aux_price">
