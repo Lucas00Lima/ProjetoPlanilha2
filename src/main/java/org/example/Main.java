@@ -1,21 +1,29 @@
 package org.example;
 
 import org.apache.poi.ss.usermodel.*;
-
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova pasta\\planilha.xlsx";
-        String username = "root";
-        String password = "";
-        String table = "product";
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(null);
+        String filePath = null;
+        if (result == JFileChooser.APPROVE_OPTION) {
+            filePath = fileChooser.getSelectedFile().getAbsolutePath();
+            JOptionPane.showMessageDialog(null, "Arquivo selecionado: " + filePath);
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            JOptionPane.showMessageDialog(null, "Seleção de arquivo cancelada.");
+        } else if (result == JFileChooser.ERROR_OPTION) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar arquivo.");
+        }
+        String username = JOptionPane.showInputDialog("Insira o usuario do banco");
+        String password = JOptionPane.showInputDialog("Insira a senha do banco");
+        String table = JOptionPane.showInputDialog("Qual tabela deseja fazer a transferencia ?");
         String url = "jdbc:mysql://localhost:3306/db000";
         String defaultValue = "";
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
