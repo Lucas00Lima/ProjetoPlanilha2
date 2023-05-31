@@ -24,6 +24,7 @@ public class Main {
         String username = JOptionPane.showInputDialog("Insira o usuario do banco");
         String password = JOptionPane.showInputDialog("Insira a senha do banco");
         String table = JOptionPane.showInputDialog("Qual tabela deseja fazer a transferencia ?");
+        String category = JOptionPane.showInputDialog("Nome da Categoria");
         String url = "jdbc:mysql://localhost:3306/db000";
         String defaultValue = "";
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -37,7 +38,6 @@ public class Main {
             DatabaseMetaData metaData = connection.getMetaData();
             ResultSet resultSet = metaData.getColumns(null, null, table, null);
             int totalColumnsInDatabase = 7;
-
             while (resultSet.next()) {
                 String columnName = resultSet.getString("COLUMN_NAME");
                 if (!columnName.equals("internal_code") && !columnName.equals("name") && !columnName.equals("description") && !columnName.equals("barcode") && !columnName.equals("price") && !columnName.equals("minimum_stock")) {
@@ -57,7 +57,6 @@ public class Main {
             insertQuery.append(")");
             valuePlaceholders.append(")");
             insertQuery.append(valuePlaceholders);
-
             int rowIndex;
             int totalLinhasInseridas = 0;
             for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
@@ -87,7 +86,6 @@ public class Main {
                     }
                 }
                 String priceValues = priceValue.replaceAll("," , "");
-
                 String minimumStockValue = dataFormatter.formatCellValue(minimumStockCell);
                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery.toString());
                 preparedStatement.setString(1, internalCodeValue);
@@ -112,15 +110,30 @@ public class Main {
                 preparedStatement.addBatch("UPDATE " + table + " SET panel = 1");
                 preparedStatement.addBatch("UPDATE " + table + " SET active = 1");
                 preparedStatement.addBatch("UPDATE " + table + " SET hall_table = 1");
-                preparedStatement.addBatch("UPDATE " + table + " SET category_id = 1");
                 preparedStatement.executeBatch();
                 totalLinhasInseridas++;
                 preparedStatement.close();
             }
+            PreparedStatement categoryPre = connection.prepareStatement("INSERT INTO category (id,name,description,type,sub_type,web,active,kitchen_notes) VALUES (?,?,?,?,?,?,?,?)");
+            categoryPre.setInt(1,1);//Id
+            categoryPre.setString(2, category);//Name
+            categoryPre.setString(3,"");//Description
+            categoryPre.setInt(4,1);//Type
+            categoryPre.setInt(5,1);//Sub_type
+            categoryPre.setInt(6,0);//Web
+            categoryPre.setInt(7,1);//Active
+            categoryPre.setString(8,"");//kitchen_notes
+            categoryPre.executeUpdate();
+            PreparedStatement batchPre = connection.prepareStatement("UPDATE " + table + " SET category_id = 1");
+            batchPre.addBatch();
+            batchPre.executeBatch();
+            categoryPre.close();
+            batchPre.close();
+            System.out.println("Categoria" + category+" Inserida");
             connection.close();
             System.out.println("Row affected = " + totalLinhasInseridas);
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
-    }
+}

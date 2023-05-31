@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7483cb7-157e-4488-b72b-2931c01934d6" name="Changes" comment="Commit">
+    <list default="true" id="f7483cb7-157e-4488-b72b-2931c01934d6" name="Changes" comment="Insert category">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/cefe0d0b-7d60-45da-9239-082be183f253.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cefe0d0b-7d60-45da-9239-082be183f253.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +14,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -79,7 +78,9 @@
       <workItem from="1685192318115" duration="3691000" />
       <workItem from="1685405118079" duration="1482000" />
       <workItem from="1685411708206" duration="39000" />
-      <workItem from="1685473683037" duration="2212000" />
+      <workItem from="1685473683037" duration="3254000" />
+      <workItem from="1685554536753" duration="3447000" />
+      <workItem from="1685558382126" duration="62000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1685142527435</created>
@@ -95,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685142989587</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Insert category">
+      <created>1685558424443</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685558424443</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,7 +122,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="Insert category" />
+    <option name="LAST_COMMIT_MESSAGE" value="Insert category" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -122,6 +131,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.sql.SQLException" package="java.sql" />
           <option name="timeStamp" value="4" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="5" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
