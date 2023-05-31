@@ -24,7 +24,11 @@ public class Main {
         String username = JOptionPane.showInputDialog("Insira o usuario do banco");
         String password = JOptionPane.showInputDialog("Insira a senha do banco");
         String table = JOptionPane.showInputDialog("Qual tabela deseja fazer a transferencia ?");
+<<<<<<< HEAD
         String category = JOptionPane.showInputDialog("Nome da Categoria");
+=======
+        String category = JOptionPane.showInputDialog("Insira o nome da categoria que deseja colocar todos os produtos");
+>>>>>>> master
         String url = "jdbc:mysql://localhost:3306/db000";
         String defaultValue = "";
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
