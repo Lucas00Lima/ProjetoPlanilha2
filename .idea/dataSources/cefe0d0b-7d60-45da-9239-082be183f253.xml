@@ -1084,7 +1084,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8_general_ci</CollationName>
     </table>
     <column id="310" parent="232" name="id">
-      <AutoIncrement>3</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1786,7 +1786,7 @@ element_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="448" parent="243" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>8</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4240,7 +4240,7 @@ element_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="935" parent="277" name="id">
-      <AutoIncrement>162</AutoIncrement>
+      <AutoIncrement>94</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4566,7 +4566,7 @@ element_id</ColNames>
       <Position>5</Position>
     </column>
     <column id="999" parent="280" name="id">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -6930,7 +6930,7 @@ element_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="1463" parent="303" name="id">
-      <AutoIncrement>2777</AutoIncrement>
+      <AutoIncrement>2360</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

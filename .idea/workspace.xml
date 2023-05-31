@@ -79,7 +79,8 @@
       <workItem from="1685192318115" duration="3691000" />
       <workItem from="1685405118079" duration="1482000" />
       <workItem from="1685411708206" duration="39000" />
-      <workItem from="1685473683037" duration="2212000" />
+      <workItem from="1685473683037" duration="3254000" />
+      <workItem from="1685554536753" duration="3447000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1685142527435</created>
@@ -122,6 +123,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.sql.SQLException" package="java.sql" />
           <option name="timeStamp" value="4" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="5" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
