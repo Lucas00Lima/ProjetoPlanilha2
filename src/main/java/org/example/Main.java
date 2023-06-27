@@ -52,6 +52,9 @@ public class Main {
                         totalColumnsInDatabase++;
                     }
                 }
+                if (columnName.equals("pack_amount")) {
+                	break;
+                }  	
             }
             resultSet.close();
             insertQuery.append(")");
@@ -86,14 +89,14 @@ public class Main {
                     }
                 }
                 String priceValues = priceValue.replaceAll("," , "");
-                String minimumStockValue = dataFormatter.formatCellValue(minimumStockCell);
+                double minimumStockValue = minimumStockCell.getNumericCellValue() * 1000;
                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery.toString());
                 preparedStatement.setString(1, internalCodeValue);
                 preparedStatement.setString(2, nameValue);
                 preparedStatement.setString(3, description);
-                preparedStatement.setString(4, barcodeValue);
+                preparedStatement.setString(4, "");
                 preparedStatement.setString(5, priceValues);
-                preparedStatement.setString(6, minimumStockValue);
+                preparedStatement.setDouble(6, minimumStockValue);
                 for (int j = 0; j < defaultValues.size(); j++) {
                     String value = defaultValues.get(j);
                     if (value.isEmpty()) {
